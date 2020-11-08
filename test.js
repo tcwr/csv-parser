@@ -1,4 +1,4 @@
-  const csvParse = require("./index");
+const csvParse = require("./index");
 
 (async () => {
 try {
