@@ -23,18 +23,25 @@ async function csvParse(inputfile, options) {
 }
 module.exports = csvParse;
 
-const convertToObject = async (inputstring, headerLine) => {
-  const valueArray = inputstring.split(",");
-  let returnObject = {};
-  for (const [index, value] of valueArray.entries()) {
-   // console.log(index);
-    //console.log(value);
-    //console.log(headerLine[index]);
 
-    returnObject[headerLine[index]] = value;
-   // console.log(returnObject);
-  }
-   return returnObject;
+const convertToObject = async (inputstring, headerLine) => {
+
+
+      const valueArray = inputstring.split(",");
+
+    const reducedObject = valueArray.reduce(
+      function(dataObject, value, index){
+            dataObject[headerLine[index]] = value;
+            return dataObject;
+      },
+      {}
+    );
+    console.log("reducedObject");
+    console.log(reducedObject);
+
+
+
+  return reducedObject;
 };
 
 
